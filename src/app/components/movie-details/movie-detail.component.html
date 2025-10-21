@@ -1,0 +1,72 @@
+<div class="flex justify-between items-center mb-14">
+  <app-logo/>
+  <app-search-input/>
+  <app-icon-menu/>
+</div>
+@if (movie) {
+  <div class="grid grid-cols-5 text-white mt-10">
+    <div class="col-span-3">
+      @if (showTrailer && trailerKey) {
+        <iframe
+          [src]="safeTrailerUrl"
+          class="rounded-xl w-full max-h-screen aspect-video"
+          allowfullscreen
+        ></iframe>
+      } @else {
+        <img
+          [src]="'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path"
+          [alt]="movie.title"
+          class="rounded-xl w-full max-h-screen object-cover"
+        />
+      }
+    </div>
+
+    <div class="col-span-2 ps-6 flex flex-col justify-between">
+      <div>
+        <h2 class="text-4xl mb-4">{{ movie.title }}</h2>
+        <div class="flex gap-10">
+          <p class="flex gap-1"> <app-clock-icon/> {{ movie.runtime }} </p>
+          <p class="flex gap-1"> <app-star-icon/> {{ movie.vote_average | number : "1.1-1" }} </p>
+          <p class="flex gap-1"> <app-globe-icon/> {{ movie.original_language | uppercase }} </p>
+          <p>{{ movie.release_date }}</p>
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <p>
+          @for (genre of movie.genres; let last = $last; track genre.id) {
+            {{ genre.name }}
+            @if (!last) {
+              <span>/</span>
+            }
+          }
+        </p>
+      </div>
+      <button class="w-full bg-red-800 flex items-center justify-center gap-1 p-2 rounded-2xl cursor-pointer" (click)="showTrailer = !showTrailer">
+        <app-play-icon/>Preview
+      </button>
+      <p>{{ movie.overview }}</p>
+      <div class="mt-10 flex justify-between">
+        <p class="flex gap-1"> <app-favorite-icon/> Add favorite </p>
+        <p class="flex gap-1"> <app-eye-icon/> Add watchlist </p>
+        <p class="flex gap-1"> <app-paper-airplane-icon/> Send </p>
+      </div>
+      <hr/>
+    </div>
+  </div>
+}
+
+<div class="mt-10 text-white flex gap-6">
+  <button (click)="activeTab = 'cast'" [ngClass]="{ 'border-l-2 border-red-600 font-bold': activeTab === 'cast' }" class="pl-1 cursor-pointer">
+    Cast
+  </button>
+  <button (click)="activeTab = 'reviews'" [ngClass]="{'border-l-2 border-red-600 font-bold': activeTab === 'reviews'}" class="pl-1 cursor-pointer">
+    Reviews
+  </button>
+</div>
+
+@if (activeTab === 'cast') {
+  <app-cast [cast]="movieCast"/>
+} @else if (activeTab === 'reviews') {
+  <app-reviews [reviews]="movieReviews"/>
+}

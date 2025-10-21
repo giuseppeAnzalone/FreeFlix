@@ -1,0 +1,119 @@
+swiper-container {
+  width: 100%;
+  height: 540px;
+  margin-top: 20px;
+  margin-bottom: 60px; /* più spazio per i pallini */
+  display: block; /* importante per assicurare che lo spacing funzioni */
+}
+
+/* Pagination */
+swiper-container::part(bullet) {
+  background-color: lightgrey;
+}
+
+swiper-container::part(bullet-active) {
+  background-color: white;
+}
+
+.swiper-pagination-bullet {
+  margin: 0 6px;
+  background-color: grey;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white;
+}
+
+/* Navigationon */
+swiper-container::part(button-next) {
+ color: white;
+}
+
+swiper-container::part(button-prev) {
+  color: white;
+}
+
+/* Slide base */
+swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 90%;
+}
+
+.slide-content {
+  display: none;
+}
+
+.swiper-slide-active .slide-content{
+ display: block;
+}
+
+/* Immagine */
+swiper-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Overlay */
+swiper-slide .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+/* Titolo */
+swiper-slide .movie-title {
+  position: absolute;
+  top: 30%;
+  left: 4%;
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+  z-index: 2;
+}
+
+swiper-slide .movie-overview {
+  position: absolute;
+  top: 40%;
+  left: 4%;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  z-index: 2;
+}
+
+swiper-slide .movie-data-release-date {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  z-index: 2;
+}
+
+
+swiper-slide .play-button {
+  position: absolute;
+  top: 60%;
+  left: 4%;
+  width: 120px;
+  height: 40px;
+  padding: 24px;
+  background-color: rgba(255,0,0,0.5);
+  border: 1px solid red;
+  color: #ffffff;
+  border-radius: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+

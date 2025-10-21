@@ -1,0 +1,11 @@
+<div class="flex justify-between items-center mb-14">
+  <app-logo />
+  <app-search-input />
+  <app-icon-menu />
+</div>
+<app-swiper-carousel />
+<section class="flex flex-col gap-24 mt-20">
+  <app-movie-list [categoryLabel]="'Now Playing'" [categoryMovieList]="'now_playing'"/>
+  <app-movie-list [categoryLabel]="'Top Rated'" [categoryMovieList]="'top_rated'"/>
+  <app-movie-list [categoryLabel]="'Upcoming'" [categoryMovieList]="'upcoming'"/>
+</section>

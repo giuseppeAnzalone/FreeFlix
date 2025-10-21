@@ -1,0 +1,12 @@
+<div class="text-white flex justify-between gap-4 my-10">
+  @for(actor of cast.slice(0, 8); track actor.cast_id){
+  <div class="w-40 text-center">
+    <img
+      class="rounded-lg object-cover"
+      [src]="'https://image.tmdb.org/t/p/w300' + actor.profile_path"
+      [alt]="actor.name"
+    />
+    <p class="mt-2">{{ actor.name }}</p>
+  </div>
+  }
+</div>

@@ -1,0 +1,17 @@
+<div class="text-white flex flex-col items-center border border-white w-2xl h-140 m-auto my-10 px-30 rounded-2xl">
+  <h1 class="my-10 text-4xl">Register an <span class="text-red-700">account</span></h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-6 w-full my-20">
+    <input type="text" class="w-full border border-white shadow rounded-2xl p-3 placeholder-neutral-600 outline-0"
+           placeholder="Username"
+           formControlName="username"
+    >
+    <input type="password" class="w-full border border-white rounded-2xl p-3 placeholder-neutral-600 outline-0"
+           placeholder="Password"
+           formControlName="password"
+    >
+    <button class="w-full bg-red-800 flex items-center justify-center gap-1 p-3 rounded-2xl cursor-pointer"
+            [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid">Register
+    </button>
+
+  </form>
+</div>

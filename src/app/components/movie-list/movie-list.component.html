@@ -1,0 +1,33 @@
+<h3 class="text-white text-2xl mb-4">{{ categoryLabel }}</h3>
+<div class="relative">
+  <!-- Pulsante sinistra -->
+  <button (click)="scrollLeft()" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+         class="size-10">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>
+    </svg>
+  </button>
+
+  <!-- Container scrollabile -->
+  <div #scrollContainer class="snap-x snap-mandatory flex gap-4 overflow-x-auto no-scrollbar scroll-smooth py-3">
+    @for (movie of movies; track movie) {
+      <div class="snap-center snap-always hover:scale-105 flex rounded-lg overflow-hidden min-w-48 transition-all duration-300">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w342/' + movie.poster_path"
+        [alt]='movie.title'
+        [title]="movie.title"
+        class="w-48 rounded-lg shrink-0 cursor-pointer border border-transparent transition-all duration-300 hover:scale-110 hover:shadow-md"
+        (click)="getMovieDetails(movie.id)"
+      >
+      </div>
+    }
+  </div>
+
+  <!-- Pulsante destra -->
+  <button (click)="scrollRight()" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+         class="size-10">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>
+    </svg>
+  </button>
+</div>

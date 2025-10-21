@@ -1,0 +1,44 @@
+<swiper-container
+  class="mySwiper"
+  pagination="true"
+  effect="coverflow"
+  grab-cursor="true"
+  centered-slides="true"
+  slides-per-view="auto"
+  coverflow-effect-rotate="0"
+  coverflow-effect-stretch="-180"
+  coverflow-effect-depth="300"
+  coverflow-effect-modifier="2"
+  coverflow-effect-slide-shadows="true"
+  navigation="true"
+  mousewheel="false"
+  speed="800"
+  keyboard="true"
+>
+  <swiper-slide *ngFor="let movie of popularMovies">
+    <div class="overlay"></div>
+    <div class="slide-content">
+      <h2 class="movie-title">{{ movie.title | uppercase }}</h2>
+      <p class="movie-overview">
+        {{ movie.overview.length > 100 ? (movie.overview | slice : 0 : 100) + "..." : movie.overview }}
+      </p>
+      <div class="flex gap-10 movie-data-release-date">
+        <p>{{ movie.release_date | date : "dd-MM-yyyy" }}</p>
+        <p class="flex gap-0.5">
+          <app-star-icon/>
+          {{ movie.vote_average | number : "1.1-1" }}
+        </p>
+        <p class="flex gap-0.5">
+          <app-globe-icon/>
+          {{ movie.original_language | uppercase }}
+        </p>
+      </div>
+      <button (click)="getMovieDetails(movie.id)" class="play-button">Details</button>
+    </div>
+    <img
+      [src]="'https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path"
+      [alt]="movie.title"
+      [title]="movie.title"
+    />
+  </swiper-slide>
+</swiper-container>
